@@ -1,0 +1,117 @@
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .heading-container {
+            text-align: center;
+            width: 100%;
+            padding: 1em;
+            background-color: black;
+        }
+
+        h1 {
+            font-size: 4em;
+            margin: 0;
+            color: rgba(255, 0, 0, 0.788);
+        }
+
+        .content-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            padding: 1em;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 1em;
+            max-width: 640px;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            background-color: #000;
+            border-radius: 1em;
+            display: block;
+        }
+
+        .toggles-container {
+            display: flex;
+            justify-content: flex-end;
+            width: 20%;
+            margin-top: 2em;
+            padding: 1em;
+        }
+
+        .toggles {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 2em;
+            border-radius: 2em;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .toggle-button {
+            margin: 0.5em 0;
+            cursor: pointer;
+            padding: 1.5em;
+            background-color: grey;
+            color: yellow;
+            border: none;
+            border-radius: 0.5em;
+            font-size: 1em;
+            transition: background-color 0.5s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-button:hover {
+            background-color: darkgrey;
+        }
+
+        .status-text {
+            color: yellow;
+            margin-left: 10px;
+        }
+        
+        .overlay {
+            position: absolute;
+            width: 150px;
+            height: 40px;
+            background-color: red;
+            color: yellow;
+            font: 20px Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            box-sizing: border-box;
+            padding: 1.5em;
+            border-radius: 0.5em;
+        }
+
+        /* Positions each overlay into a corner */
+        .overlay.record { top: 20px; left: 20px; }
+        .overlay.wind { bottom: 20px; left: 20px; }
+        .overlay.orientation { top: 20px; right: 20px; }
+        .overlay.speed { bottom: 20px; right: 20px; }
+

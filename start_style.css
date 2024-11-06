@@ -1,0 +1,51 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    font-family: Arial, sans-serif;
+}
+
+.introduction-container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 4em;
+    margin: 0.5em;
+    color: rgba(255, 0, 0, 0.788);
+}
+
+h2 {
+    font-size: 2em;
+    margin: 1em;
+    color: rgb(255, 255, 0);
+}
+
+h3 {
+    font-size: 1em;
+    margin: 0.5em;
+    color: rgb(255, 255, 0);
+}
+
+.introduction-button {
+    padding: 1em 2em;
+    font-size: 1.5em;
+    background-color: black;
+    color: yellow;
+    border: 0.5em;
+    border-radius: 0.25em;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.introduction-button:hover {
+    background-color: red;
+}
+
+.introduction-button:focus {
+    outline: 1em;
+}

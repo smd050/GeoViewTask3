@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main_style.css">
+    <title>Web Application Main Page</title>
+</head>
+
+<body>
+    <div class="heading-container">
+        <h1>Web Application Main Page</h1>
+    </div>
+
+    <div class="content-container">
+        <div class="container">
+            <video id="video" autoplay playsinline></video>
+            <!-- Overlay elements for each metric -->
+            <div id="recordOverlay" class="overlay record" style="display: none;">Record: N/A</div>
+            <div id="windOverlay" class="overlay wind" style="display: none;">Wind: N/A</div>
+            <div id="orientationOverlay" class="overlay orientation" style="display: none;">Orientation: N/A</div>
+            <div id="speedOverlay" class="overlay speed" style="display: none;">Speed: N/A</div>
+        </div>
+
+        <div class="toggles-container">
+            <div class="toggles">
+                <div class="toggle-button" onclick="toggleMetric('recordOverlay', 'record')">
+                    Toggle Camera Record
+                    <span id="status3" class="status-text">N/A</span>
+                </div>
+                <div class="toggle-button" onclick="toggleMetric('windOverlay', 'wind')">
+                    Toggle Wind Direction
+                    <span id="status4" class="status-text">N/A</span>
+                </div>
+                <div class="toggle-button" onclick="toggleMetric('orientationOverlay', 'orientation')">
+                    Toggle Device Orientation
+                    <span id="status1" class="status-text">N/A</span>
+                </div>
+                <div class="toggle-button" onclick="toggleMetric('speedOverlay', 'speed')">
+                    Toggle Speed
+                    <span id="status2" class="status-text">N/A</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let overlayEnabled = { orientation: false, speed: false, wind: false, record: false };
+        const overlayData = { orientation: null, speed: null, wind: null, record: null };
+
+        function startVideo() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    const video = document.getElementById('video');
+                    video.srcObject = stream;
+                })
+                .catch(err => {
+                    console.error("Error accessing camera: ", err);
+                    alert("Camera permission is required for the app to function.");
+                });
+        }
+
+        function toggleMetric(overlayId, metric) {
+            const overlayElement = document.getElementById(overlayId);
+            overlayEnabled[metric] = !overlayEnabled[metric];
+            overlayElement.style.display = overlayEnabled[metric] ? 'flex' : 'none';
+
+            if (overlayEnabled[metric]) {
+                startDataUpdates(metric, overlayElement);
+            }
+        }
+
+        async function startDataUpdates(metric, overlayElement) {
+            while (overlayEnabled[metric]) {
+                const data = await fetchMetricData(metric);
+                overlayData[metric] = data; // Updates the metric data
+                overlayElement.textContent = `${metric.charAt(0).toUpperCase() + metric.slice(1)}: ${data}`;
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+        }
+
+        async function fetchMetricData(metric) {
+            // Mock data; replace with actual API endpoints and handling logic
+            const mockData = {
+                orientation: Math.floor(Math.random() * 360) + "°",
+                speed: Math.floor(Math.random() * 50) + " kph",
+                wind: Math.floor(Math.random() * 360) + "°",
+                record: "Recording"
+            };
+            return mockData[metric];
+        }
+
+        window.onload = function() {
+            startVideo();
+        };
+    </script>
+</body>
+</html>
